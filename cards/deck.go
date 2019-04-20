@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // create a new type of of 'deck'
 // which a slice of strings
@@ -40,4 +43,9 @@ func (d deck) print() {
 func deal(d deck, handSize int) (deck, deck) {
   // return instance of d from index 0 to notIncluding handSize and instance of d from handSize to last index
   return d[:handSize], d[handSize:]
+}
+
+// create a helper method called toString which returns one large string that came from joined strings from the deck type of cards
+func (d deck) toString() string {
+  return strings.Join([]string(d), ",")
 }
