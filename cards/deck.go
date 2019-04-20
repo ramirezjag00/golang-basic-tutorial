@@ -4,8 +4,10 @@ import (
 	"fmt"
   // ioutil is a subpackage of io
   "io/ioutil"
+  "math/rand"
   "os"
 	"strings"
+  "time"
 )
 
 // create a new type of of 'deck'
@@ -20,7 +22,7 @@ func newDeck() deck {
   cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
   cardValues := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
 
-  // iterete through the suits and values to mock the whole deck of cards
+  // iterate through the suits and values to mock the whole deck of cards
   // first _ is saying that we are not using the index i so we replace it with an _
   // second _ is saying that we are not using the index j so we replace it with an _
   for _, suit := range cardSuits {
@@ -76,4 +78,25 @@ func newDeckFromFile(fileName string) deck {
   // if no error, convert the byte slice into one large string and comma split everything to make and return a new deck
   s := strings.Split(string(bs), ",")
   return deck(s)
+}
+
+// helper method that retuns a shuffled deck type of cards
+func (d deck) shuffle() {
+  // generate a Int64 type to pass into our random method (to create a seed)
+  source := rand.NewSource(time.Now().UnixNano())
+  // use that as the new random generator
+  r := rand.New(source)
+
+  // old way of shuffling
+  // for i := range d {
+  //   newPosition := r.Intn(len(d) - 1)
+  //
+  //   // go syntax for value swapping based on index
+  //   d[i], d[newPosition] = d[newPosition], d[i]
+  // }
+
+  // new way of shuffling needs golang version 1.10+
+  r.Shuffle(len(d), func(i, j int) {
+    d[i], d[j] = d[j], d[i]
+  })
 }
