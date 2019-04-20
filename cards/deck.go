@@ -4,6 +4,7 @@ import (
 	"fmt"
   // ioutil is a subpackage of io
   "io/ioutil"
+  "os"
 	"strings"
 )
 
@@ -57,4 +58,22 @@ func (d deck) toString() string {
 // WriteFile method accepts a fileName, byte slice using type conversion, and 0666 which is the OS permission 0666 means anyone can able to read write and edit the file
 func (d deck) saveToFile(fileName string) error {
   return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+}
+
+// a helper method that accepts a fileName (reads fileName) of an existing file and returns a new deck type of cards
+func newDeckFromFile(fileName string) deck {
+  // read the fileName inputted and print if there is an error and quit
+  bs, err := ioutil.ReadFile(fileName)
+  if err != nil {
+    // Option#1 - log error and return a call to newDeck()
+    // Option#2 - log error and entirely quit the program
+    // log.Fatal(err)
+    // same as
+    fmt.Println("ERROR: ", err)
+    // non-zero value for os.Exit means unsuccessful, will exit the program
+    os.Exit(1)
+  }
+  // if no error, convert the byte slice into one large string and comma split everything to make and return a new deck
+  s := strings.Split(string(bs), ",")
+  return deck(s)
 }
