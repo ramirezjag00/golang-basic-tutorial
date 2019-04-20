@@ -1,23 +1,8 @@
 package main
 
-import "fmt"
-
 func main() {
   cards := newDeck()
-
-  // variable using print method for type deck
-  // cards.print()
-
-  // hands, remainingCards := deal(cards, 5)
-  //
-  // hands.print()
-  // remainingCards.print()
-
-  // greeting := "Hello there!"
-  // fmt.Println([]byte(greeting))
-  // this is the result of "type conversion"
-  // basically turning string characters into its value in ascii (byte) and putting results in slice
-  // [72 101 108 108 111 32 116 104 101 114 101 33]
-
-  fmt.Println(cards.toString())
+  cards.saveToFile("my_cards")
 }
+
+// if you run this once, will create a file in the same directory, if you edit/save the file, then run this package again, it will overwrite your changes in the file

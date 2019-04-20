@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+  // ioutil is a subpackage of io
+  "io/ioutil"
 	"strings"
 )
 
@@ -48,4 +50,11 @@ func deal(d deck, handSize int) (deck, deck) {
 // create a helper method called toString which returns one large string that came from joined strings from the deck type of cards
 func (d deck) toString() string {
   return strings.Join([]string(d), ",")
+}
+
+// a helper method for using ioutil that writes/creates data/file in our device
+// it accepts fileName of string that uses type of deck data, and may/may not return a type of error
+// WriteFile method accepts a fileName, byte slice using type conversion, and 0666 which is the OS permission 0666 means anyone can able to read write and edit the file
+func (d deck) saveToFile(fileName string) error {
+  return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }
