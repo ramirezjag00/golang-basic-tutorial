@@ -35,3 +35,9 @@ func (d deck) print() {
     fmt.Println(i, card)
   }
 }
+
+// deal method has 2 arguments which are type deck and type int, which returns multiple values (with specified types) which are both type deck. YES, returning multiple values in golang is supported.
+func deal(d deck, handSize int) (deck, deck) {
+  // return instance of d from index 0 to notIncluding handSize and instance of d from handSize to last index
+  return d[:handSize], d[handSize:]
+}
