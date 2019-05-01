@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// value types which we need to use pointers
+// int, float, string, bool, structs
+
+// reference types which we don't need to worry about pointers
+// slices, maps, channels, pointers, functions
+
 type contactInfo struct {
 	email   string
 	zipCode int
