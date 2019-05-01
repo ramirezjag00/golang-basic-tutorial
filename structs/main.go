@@ -21,8 +21,27 @@ func main() {
 			zipCode: 12345,
 		},
 	}
-	fmt.Printf("First Name: %+v", jim.firstName)
-	fmt.Printf("Last Name: %+v", jim.lastName)
-	fmt.Printf("E-mail: %+v", jim.contactInfo.email)
-	fmt.Printf("Zipcode: %+v", jim.contactInfo.zipCode)
+
+	// this gets the address of Jim
+	// this is the pointer for Jim
+	jimPointer := &jim
+	jimPointer.updateName("Jimboy")
+	jim.print()
+}
+
+// pointerToPerson is the pointer of where person type was used
+// *person is the value of the type person
+func (pointerToPerson *person) updateName(newFirstName string) {
+	// *pointerPerson is the value of the address of the variable that used person type
+	// turns the address into a value
+	(*pointerToPerson).firstName = newFirstName
+}
+
+// p is the receiver or reference of the type person
+// any type person can use method print in dot syntax
+func (p person) print() {
+	fmt.Printf("First Name: %+v ", p.firstName)
+	fmt.Printf("Last Name: %+v ", p.lastName)
+	fmt.Printf("E-mail: %+v ", p.contactInfo.email)
+	fmt.Printf("Zipcode: %+v ", p.contactInfo.zipCode)
 }
