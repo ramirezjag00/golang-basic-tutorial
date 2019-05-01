@@ -22,15 +22,14 @@ func main() {
 		},
 	}
 
-	// this gets the address of Jim
-	// this is the pointer for Jim
-	jimPointer := &jim
-	jimPointer.updateName("Jimboy")
+	// no need to create a pointer for person type
+	jim.updateName("Jimboy")
 	jim.print()
 }
 
-// pointerToPerson is the pointer of where person type was used
+// pointerToPerson is the reciever or in this case the pointer of where person type was used
 // *person is the value of the type person
+// this automatically gets any updates made in the root type person, thus creates a hidden pointer
 func (pointerToPerson *person) updateName(newFirstName string) {
 	// *pointerPerson is the value of the address of the variable that used person type
 	// turns the address into a value
