@@ -2,6 +2,9 @@
 ### with Go
 
 #### to run
+> clone project golang-basic-tutorial
+> cd golang-basic-tutorial/books
+> go get -u github.com/gorilla/mux
 > go build && ./books
 
 #### client
