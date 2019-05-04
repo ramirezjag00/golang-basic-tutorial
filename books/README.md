@@ -27,3 +27,20 @@
 	}
 }
 ```
+
+#### update a book
+*send a put request using a client to https://localhost:8000/api/books/{id} using header Content-Type application/json*
+
+```
+{
+	"isbn": "31913",
+	"title": "Book Two",
+	"author": {
+		"firstname": "Jim",
+		"lastname": "Doe"
+	}
+}
+```
+
+#### delete a book
+*send a delete request using a client to https://localhost:8000/api/books/{id} using header Content-Type application/json*
